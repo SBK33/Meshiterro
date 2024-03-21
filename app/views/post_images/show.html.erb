@@ -8,7 +8,7 @@
 
    <% if @post_image.user == current_user %>
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
-  <!--上記の(post_image)はpost_imageに投稿IDの情報を渡している認識だが、params(:id)のように明示はいらんのか？-->
+  <!--上記の(@post_image)はpost_image_pathに投稿IDの情報を渡している認識だが、params(:id)のように明示はいらんのか？　.id-->
    <% end %>
  </div>
 
@@ -20,7 +20,7 @@
     <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
     <% if post_comment.user == current_user %>
       <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
-<!--(post_comment.post_image, post_comment)なぜ2つ入る? -->
+<!--(post_comment.post_image, post_comment)なぜ2つ入る? 記事のIDとコメントのIDの2つが必要なため-->
     <% end %>
     <% if @post_image.favorited_by?(current_user) %>
     <p>
