@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 #↓deviseのメソッド
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top], unless: :admin_controller?
   before_action :cofigure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
@@ -12,7 +12,12 @@ class ApplicationController < ActionController::Base
     about_path
   end
 #↑deviseのメソッド
-
+  private
+ 
+  def admin_controller?
+    self.class.module_parent_name == 'Admin'
+  end
+  
   protected
 
   def cofigure_permitted_parameters
