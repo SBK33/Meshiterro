@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class Public::ApplicationController < ActionController::Base
 
 #↓deviseのメソッド
   before_action :authenticate_user!, except: [:top], unless: :admin_controller?
@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   end
 #↑deviseのメソッド
   private
- 
+
   def admin_controller?
     self.class.module_parent_name == 'Admin'
   end
-  
+
   protected
 
   def cofigure_permitted_parameters
